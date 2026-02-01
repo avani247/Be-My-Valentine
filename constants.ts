@@ -20,7 +20,7 @@ export const CONTENT = {
 export const ASSETS = {
   // Replace these URLs with your own images hosted on GitHub or elsewhere.
   // For the sticker, a transparent PNG works best.
-  STICKER_URL: "./IMG_4004.JPG", // Make sure this file is in the same folder
+  STICKER_URL: "/IMG_4004.JPG", // Place IMG_4004.JPG in /public so it is served at /IMG_4004.JPG
   
   // The meme image shown when they say YES
   MEME_URL: "https://picsum.photos/id/1025/400/300", // e.g., assets/meme.png
