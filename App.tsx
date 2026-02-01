@@ -91,7 +91,7 @@ export default function App() {
           NOTE: Removed 'transform' and 'scale' effects here because they break 'position: fixed' 
           on children elements (the No button would vanish relative to the card). 
       */}
-      <div className="z-10 w-full max-w-md bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl p-8 border-4 border-pink-200 text-center transition-all duration-500 ease-in-out">
+      <div className="z-10 w-full max-w-2xl bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl p-10 border-4 border-pink-200 text-center transition-all duration-500 ease-in-out">
         
         {/* Main Content Area */}
         <div className="mb-8">
