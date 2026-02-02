@@ -7,8 +7,9 @@ export default function App() {
   const [accepted, setAccepted] = useState(false);
   // Track position and rotation for erratic movement
   const [noBtnState, setNoBtnState] = useState<{ x: number, y: number, rotation: number } | null>(null);
-  // Track the scale of the button (1.0 down to 0)
+  // Track the scale of the button (1.0 down to a minimum size)
   const [noBtnScale, setNoBtnScale] = useState(1);
+  const minNoBtnScale = 0.2;
   
   // Ref for the No button to measure dimensions
   const noBtnRef = useRef<HTMLButtonElement>(null);
@@ -64,8 +65,8 @@ export default function App() {
   const handleNoClick = (e: React.MouseEvent) => {
     // Prevent default click behavior just in case
     e.preventDefault();
-    // Reduce size by 10% on each click
-    setNoBtnScale(prev => Math.max(0, prev - 0.1));
+    // Reduce size by 20% on each click, but never disappear
+    setNoBtnScale(prev => Math.max(minNoBtnScale, prev * 0.8));
     // Still dodge after the click
     handleNoInteraction(); 
   };
@@ -141,28 +142,25 @@ export default function App() {
               {CONTENT.YES_BTN}
             </button>
 
-            {/* NO Button - Only render if scale is > 0 to allow Yes button to recenter naturally */}
-            {noBtnScale > 0.01 && (
-              <button
-                ref={noBtnRef}
-                onMouseEnter={handleNoInteraction}
-                onTouchStart={handleNoInteraction} // Mobile support
-                onClick={handleNoClick}
-                style={{
-                  position: noBtnState ? 'fixed' : 'static',
-                  left: noBtnState ? noBtnState.x : 'auto',
-                  top: noBtnState ? noBtnState.y : 'auto',
-                  // Faster transition for snappier dodging (0.15s)
-                  transition: 'top 0.15s ease-out, left 0.15s ease-out, transform 0.15s ease-out',
-                  // Rotate erratically and scale based on clicks
-                  transform: `rotate(${noBtnState ? noBtnState.rotation : 0}deg) scale(${noBtnScale})`,
-                  zIndex: 50, // Ensure it stays above everything
-                }}
-                className="px-8 py-3 bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold rounded-full text-xl shadow-inner cursor-default"
-              >
-                {CONTENT.NO_BTN}
-              </button>
-            )}
+            <button
+              ref={noBtnRef}
+              onMouseEnter={handleNoInteraction}
+              onTouchStart={handleNoInteraction} // Mobile support
+              onClick={handleNoClick}
+              style={{
+                position: noBtnState ? 'fixed' : 'static',
+                left: noBtnState ? noBtnState.x : 'auto',
+                top: noBtnState ? noBtnState.y : 'auto',
+                // Faster transition for snappier dodging (0.15s)
+                transition: 'top 0.15s ease-out, left 0.15s ease-out, transform 0.15s ease-out',
+                // Rotate erratically and scale based on clicks
+                transform: `rotate(${noBtnState ? noBtnState.rotation : 0}deg) scale(${noBtnScale})`,
+                zIndex: 50, // Ensure it stays above everything
+              }}
+              className="px-8 py-3 bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold rounded-full text-xl shadow-inner cursor-default"
+            >
+              {CONTENT.NO_BTN}
+            </button>
           </div>
         ) : (
           <div className="mt-8">
