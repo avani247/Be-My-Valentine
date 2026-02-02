@@ -23,7 +23,7 @@ export const ASSETS = {
   STICKER_URL: `${import.meta.env.BASE_URL}IMG_4004.JPG`, // Place IMG_4004.JPG in /public so it is served at /<base>/IMG_4004.JPG
   
   // The meme image shown when they say YES
-  MEME_URL: "https://picsum.photos/id/1025/400/300", // e.g., assets/meme.png
+  MEME_URL: `${import.meta.env.BASE_URL}meme.jpg`, // Place meme.jpg in /public so it is served at /<base>/meme.jpg
   
   // Optional background music
   MUSIC_URL: "", // e.g., assets/song.mp3
