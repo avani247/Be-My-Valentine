@@ -97,12 +97,14 @@ export default function App() {
         <div className="mb-8">
           {accepted ? (
             <div className="animate-fade-in-up">
-              <img 
-                src={ASSETS.MEME_URL} 
-                alt="Celebration Meme" 
-                className="w-full h-48 object-cover rounded-lg mb-4 shadow-md animate-pop-in"
-              />
-              <h1 className="text-3xl font-handwriting text-red-600 mb-2">
+              <div className="w-full rounded-2xl border-4 border-pink-200 bg-white/70 p-3 shadow-md mb-4">
+                <img 
+                  src={ASSETS.MEME_URL} 
+                  alt="Celebration Meme" 
+                  className="w-full h-56 object-contain rounded-xl animate-pop-in"
+                />
+              </div>
+              <h1 className="text-3xl font-bold text-pink-600 mb-2">
                 {CONTENT.SUCCESS_TEXT}
               </h1>
             </div>
